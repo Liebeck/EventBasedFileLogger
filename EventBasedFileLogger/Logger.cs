@@ -11,7 +11,7 @@ namespace EventBasedFileLogger
 
         public event EventHandler<LogEventArgs> LogChanged;
 
-        internal virtual void OnLog(String message)
+        public virtual void OnLog(String message)
         {
             EventHandler<LogEventArgs> handler = this.LogChanged;
             if (handler != null)
