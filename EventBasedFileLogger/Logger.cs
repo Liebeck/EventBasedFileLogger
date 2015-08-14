@@ -20,6 +20,18 @@ namespace EventBasedFileLogger
             }
         }
 
+        public virtual void OnLog(String message, bool logMessage)
+        {
+            if (logMessage)
+            {
+                EventHandler<LogEventArgs> handler = this.LogChanged;
+                if (handler != null)
+                {
+                    handler(this, new LogEventArgs(message));
+                }
+            }
+        }
+
         public static void Log(String text, String path)
         {
             text = String.Format("{0}: {1}", DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss"), text);
